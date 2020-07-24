@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from "@testing-library/react";
+import { render } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 
 import Author from "./Author";
@@ -16,12 +16,18 @@ test('render author', () => {
       'again leaving BioWare to focus on his independent work.',
   };
 
-  /*
-   * В коде ниже, вот такая проблема  Support for the experimental syntax 'jsx' isn't currently enabled (19:32),
-   * не знаю из-за чего, вроде бы все как на видео сделал, добавил все новые модули
-   * */
-  const {getByText} = render(<Author author={author}/>);
+  const { getByText, getByAltText } = render(<Author author={author}/>);
 
-  expect(getByText('Drew Karpyshyn')).toBeInTheDocument;
-  expect(getByText('drew.karpyshyn@hotmail.com')).toBeInTheDocument;
+  expect(getByAltText(author.name)).toBeInTheDocument();
+  expect(getByAltText(author.name)).toHaveAttribute('src', author.avatar);
+
+  expect(getByText(`Name: ${author.name}`)).toBeInTheDocument();
+  expect(getByText(`Email: ${author.email}`)).toBeInTheDocument();
+  expect(getByText(/BioWare/)).toBeInTheDocument();
+});
+
+test('empty author', () => {
+  const { getByText } = render(<Author/>);
+
+  expect(getByText('Unknown')).toBeInTheDocument();
 });

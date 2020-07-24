@@ -7,6 +7,10 @@ export default class Book extends React.Component {
   render() {
     const {book} = this.props;
 
+    if (!book) {
+      return <div className='book'>Unknown</div>;
+    }
+
     return (
       <div className='book'>
         <div className='cover' style={{float: 'left'}}>
