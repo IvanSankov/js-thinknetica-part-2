@@ -8,26 +8,35 @@ export default class Book extends React.Component {
     const {book} = this.props;
 
     if (!book) {
-      return <div className='book'>Unknown</div>;
+      return <div className='row'>Unknown</div>;
     }
 
     return (
-      <div className='book'>
-        <div className='cover' style={{float: 'left'}}>
-          <img src={book.cover} alt={book.title}/>
+      <div className="row">
+        <div className="col-sm-8">
+          <h3>Book</h3>
+          <div className="row">
+            <div className="col-sm-3">
+              <img src={book.cover} className='img-fluid' alt={book.title}/>
+            </div>
+            <div className="col-sm-9">
+              <div className="row">
+                <div className="col-sm-12">Title: {book.title}</div>
+                <div className="col-sm-12">Short description: {book.shortDescription}</div>
+                <div className='col-sm-12'>Pages: {book.pages}</div>
+                <div className='col-sm-12'>Language: {book.language}</div>
+                <div className='col-sm-12'>Progress: {book.progress}%</div>
+                <div className='col-sm-12'>Min price: {book.minPrice}$</div>
+                <div className='col-sm-12'>Desired price: {book.desiredPrice}$</div>
+                <div className='col-sm-12'>Current sum: {book.currentSum}$</div>
+                <div className='col-sm-12'>Expected sum: {book.expectedSum}$</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className='description'>
-          <div className="title">Title: {book.title}</div>
-          <div className="short-description">Short description: {book.shortDescription}</div>
-          <div className='pages'>Pages: {book.pages}</div>
-          <div className='language'>Language: {book.language}</div>
-          <div className='progress'>Progress: {book.progress}%</div>
-          <div className='min-price'>Min price: {book.minPrice}$</div>
-          <div className='desired-price'>Desired price: {book.desiredPrice}$</div>
-          <div className='current-sum'>Current sum: {book.currentSum}$</div>
-          <div className='expected-sum'>Expected sum: {book.expectedSum}$</div>
+        <div className="col-sm-4">
+          <Author author={book.author}/>
         </div>
-        <Author author={book.author}/>
       </div>
     );
   }

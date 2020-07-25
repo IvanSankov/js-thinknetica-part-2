@@ -6,15 +6,18 @@ export default class Author extends React.Component {
     const {author} = this.props;
 
     if (!author) {
-      return <div className='author'>Unknown</div>;
+      return <div className='row'>Unknown</div>;
     }
 
     return (
-      <div className='author' style={{float: 'left'}}>
-        <img src={author.avatar} alt={author.name} style={{float: 'left'}}/>
-        <div className='name'>Name: {author.name}</div>
-        <div className='email'>Email: {author.email}</div>
-        <div className='bio'>Bio: {author.bio}</div>
+      <div className='row'>
+        <h3>Author</h3>
+        <div className="col-sm-12">
+          <img src={author.avatar} className='img-fluid' alt={author.name}/>
+        </div>
+        <div className='col-sm-12'>Name: {author.name}</div>
+        <div className='col-sm-12'>Email: {author.email}</div>
+        <div className='col-sm-12'>Bio: {author.bio}</div>
       </div>
     );
   }
