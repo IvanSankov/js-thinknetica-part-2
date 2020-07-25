@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import React from 'react';
 
 import Author from './Author'
@@ -12,7 +11,7 @@ export default class Book extends React.Component {
     }
 
     return (
-      <div className="row">
+      <div className="row bg-light">
         <div className="col-sm-7">
           <h3>Book</h3>
           <div className="row">
