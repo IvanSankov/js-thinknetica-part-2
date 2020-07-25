@@ -15,9 +15,9 @@ export default class Author extends React.Component {
         <div className="col-sm-12">
           <img src={author.avatar} className='img-fluid' alt={author.name}/>
         </div>
-        <div className='col-sm-12'>Name: {author.name}</div>
-        <div className='col-sm-12'>Email: {author.email}</div>
-        <div className='col-sm-12'>Bio: {author.bio}</div>
+        <div className='col-sm-12'><b>Name</b>: {author.name}</div>
+        <div className='col-sm-12'><b>Email</b>: {author.email}</div>
+        <div className='col-sm-12'><b>Bio</b>: {author.bio}</div>
       </div>
     );
   }
