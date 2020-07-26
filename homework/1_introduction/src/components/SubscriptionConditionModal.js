@@ -25,21 +25,21 @@ export default class SubscriptionConditionModal extends React.Component {
           Subscription condition
         </button>
         <Modal>
-          <div className="modal" tabIndex="-1" style={style}>
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">Modal title</h5>
-                  <button type="button" className="close" onClick={this.toggleShow}>
+          <div className='modal' tabIndex="-1" style={style}>
+            <div className='modal-dialog'>
+              <div className='modal-content'>
+                <div className='modal-header'>
+                  <h5 className='modal-title'>Modal title</h5>
+                  <button type="button" className='close' onClick={this.toggleShow}>
                     <span>&times;</span>
                   </button>
                 </div>
-                <div className="modal-body">
+                <div className='modal-body'>
                   <p>Modal body text goes here.</p>
                 </div>
-                <div className="modal-footer">
-                  <button onClick={this.toggleShow} className="btn btn-primary">I agree</button>
-                  <button onClick={this.toggleShow} className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div className='modal-footer'>
+                  <button onClick={this.toggleShow} className='btn btn-primary'>I agree</button>
+                  <button onClick={this.toggleShow} className='btn btn-secondary' data-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
