@@ -21,8 +21,8 @@ test('render author', () => {
   expect(getByAltText(author.name)).toBeInTheDocument();
   expect(getByAltText(author.name)).toHaveAttribute('src', author.avatar);
 
-  expect(getByText(`Name: ${author.name}`)).toBeInTheDocument();
-  expect(getByText(`Email: ${author.email}`)).toBeInTheDocument();
+  expect(getByText(`<b>Name</b>: ${author.name}`)).toBeInTheDocument();
+  expect(getByText(`<b>Email</b>: ${author.email}`)).toBeInTheDocument();
   expect(getByText(/BioWare/)).toBeInTheDocument();
 });
 

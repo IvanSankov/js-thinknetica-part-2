@@ -15,6 +15,12 @@ export default class Modal extends React.Component {
   }
 
   componentWillUnmount() {
+    /*
+    * Когда запускаю тесты, то падает на этом месте с ошибкой
+    * TypeError: Cannot read property 'removeChild' of null,
+    * Понятно, что при Тестировании например того же Book.js у меня нет элемента modal-root, а как мне его
+    * тогда добавить? Как вообще добавлять элементы из вне для тестирования отдельного компонента?
+    * */
     modalRoot.removeChild(this.el);
   }
 
