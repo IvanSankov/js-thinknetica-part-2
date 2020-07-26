@@ -1,19 +1,23 @@
 import React from 'react';
 
-import Author from './Author'
+import AuthorList from './AuthorList'
+
+const MIN_SUBSCRIBERS_FOR_POPULARITY = 100;
 
 export default class Book extends React.Component {
   render() {
     const {book} = this.props;
-
     if (!book) {
       return <div className='row'>Unknown</div>;
     }
 
+    const popular = book.subscribers > MIN_SUBSCRIBERS_FOR_POPULARITY
+        && <span className="badge badge-primary">Popular</span>;
+
     return (
       <div className="row bg-light">
         <div className="col-sm-7">
-          <h3>Book</h3>
+          <h3>Book {popular}</h3>
           <div className="row">
             <div className="col-sm-3">
               <img src={book.cover} className='img-fluid' alt={book.title}/>
@@ -34,7 +38,7 @@ export default class Book extends React.Component {
           </div>
         </div>
         <div className="col-sm-4">
-          <Author author={book.author}/>
+          <AuthorList authors={book.authors}/>
         </div>
       </div>
     );

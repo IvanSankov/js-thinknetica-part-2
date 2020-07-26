@@ -2,15 +2,40 @@
   "title": "Star Wars: Darth Bane: Path of Destruction",
   "shortDescription": "Path of Destruction is a novel in the Star Wars saga and is centered on the life of Darth Bane and the fall of the first Sith order. It was written by Drew Karpyshyn and was released on September 26, 2006. The book takes place roughly 1,000 years before Star Wars Episode IV: A New Hope.",
   "pages": 389,
+  "subscribers": 1000,
   "language": "English",
   "progress": 1,
   "cover": "//upload.wikimedia.org/wikipedia/en/thumb/9/92/Star_Wars_-_Darth_Bane_-_Path_of_Destruction_cover.jpg/220px-Star_Wars_-_Darth_Bane_-_Path_of_Destruction_cover.jpg",
-  "author": {
-    "name": "Drew Karpyshyn",
-    "avatar": "//upload.wikimedia.org/wikipedia/commons/thumb/1/18/Drew_Karpyshyn_-_Lucca_Comics_%26_Games_2014.JPG/200px-Drew_Karpyshyn_-_Lucca_Comics_%26_Games_2014.JPG",
-    "email": "drew.karpyshyn@hotmail.com",
-    "bio": "Drew Karpyshyn (born July 28, 1971) is a Canadian video game scenario writer, scriptwriter and novelist. He served as a senior writer for BioWare's Star Wars: Knights of the Old Republic and lead writer for the first two Mass Effect video games. He left BioWare in 2012 to focus on his Chaos Born novels, and returned to it three years later in 2015. On March 9, 2018, he announced he was once again leaving BioWare to focus on his independent work."
-  },
+  "authors": [
+    {
+      "id": 1,
+      "name": "Drew Karpyshyn",
+      "avatar": "//upload.wikimedia.org/wikipedia/commons/thumb/1/18/Drew_Karpyshyn_-_Lucca_Comics_%26_Games_2014.JPG/200px-Drew_Karpyshyn_-_Lucca_Comics_%26_Games_2014.JPG",
+      "email": "drew.karpyshyn@hotmail.com",
+      "bio": "Drew Karpyshyn (born July 28, 1971) is a Canadian video game scenario writer, scriptwriter and novelist. He served as a senior writer for BioWare's Star Wars: Knights of the Old Republic and lead writer for the first two Mass Effect video games. He left BioWare in 2012 to focus on his Chaos Born novels, and returned to it three years later in 2015. On March 9, 2018, he announced he was once again leaving BioWare to focus on his independent work."
+    },
+    {
+      "id": 2,
+      "name": "Eric Arthur Blair",
+      "avatar": "//upload.wikimedia.org/wikipedia/commons/thumb/7/7e/George_Orwell_press_photo.jpg/220px-George_Orwell_press_photo.jpg",
+      "email": "eric.arthur.blair@gmail.com",
+      "bio": "Eric Arthur Blair (25 June 1903 – 21 January 1950), known by his pen name George Orwell, was an English novelist, essayist, journalist and critic. His work is characterised by lucid prose, biting social criticism, opposition to totalitarianism, and outspoken support of democratic socialism."
+    },
+    {
+      "id": 3,
+      "name": "Alexander Sergeyevich Pushkin",
+      "avatar": "//upload.wikimedia.org/wikipedia/commons/thumb/5/56/Portrait_of_Alexander_Pushkin_%28Orest_Kiprensky%2C_1827%29.PNG/220px-Portrait_of_Alexander_Pushkin_%28Orest_Kiprensky%2C_1827%29.PNG",
+      "email": "alexander.sergeyevich.pushkin@gmail.com",
+      "bio": "Alexander Sergeyevich Pushkin (English: /ˈpʊʃkɪn/; Russian: Александр Сергеевич Пушкин[note 1], tr. Aleksandr Sergejevich Pushkin, IPA: [ɐlʲɪkˈsandr sʲɪrˈɡʲe(j)ɪvʲɪtɕ ˈpuʂkʲɪn] (About this soundlisten); 6 June [O.S. 26 May] 1799 – 10 February [O.S. 29 January] 1837) was a Russian poet, playwright, and novelist of the Romantic era who is considered by many to be the greatest Russian poet and the founder of modern Russian literature."
+    },
+    {
+      "id": 4,
+      "name": "Alexandre Dumas",
+      "avatar": "//upload.wikimedia.org/wikipedia/commons/thumb/0/06/Alexander_Dumas_p%C3%A8re_par_Nadar_-_Google_Art_Project.jpg/220px-Alexander_Dumas_p%C3%A8re_par_Nadar_-_Google_Art_Project.jpg",
+      "email": "alexandre.dumas@outlook.com",
+      "bio": "Alexandre Dumas (UK: /ˈdjuːmɑː, dʊˈmɑː/, US: /duːˈmɑː/; French: [alɛksɑ̃dʁ dyma]; born Dumas Davy de la Pailleterie [dyma davi də la pajətʁi]; 24 July 1802 – 5 December 1870), also known as Alexandre Dumas père (French for 'father'), was a French writer. His works have been translated into many languages, and he is one of the most widely read French authors."
+    }
+  ],
   "minPrice": 100,
   "desiredPrice": 500,
   "currentSum": 1,
