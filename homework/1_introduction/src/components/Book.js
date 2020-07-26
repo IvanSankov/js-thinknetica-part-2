@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AuthorList from './AuthorList'
+import SubscriptionConditionModal from "./SubscriptionConditionModal";
 
 const MIN_SUBSCRIBERS_FOR_POPULARITY = 100;
 
@@ -20,7 +21,14 @@ export default class Book extends React.Component {
           <h3>Book {popular}</h3>
           <div className="row">
             <div className="col-sm-3">
-              <img src={book.cover} className='img-fluid' alt={book.title}/>
+              <div className="row">
+                <div className="col-sm-12">
+                  <img src={book.cover} className='img-fluid' alt={book.title}/>
+                </div>
+                <div className="col-sm-12">
+                  <SubscriptionConditionModal />
+                </div>
+              </div>
             </div>
             <div className="col-sm-9">
               <div className="row">
