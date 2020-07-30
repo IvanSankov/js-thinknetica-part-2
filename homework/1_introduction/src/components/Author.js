@@ -1,11 +1,13 @@
 import React from 'react';
 
+import EmptyBlock from "./EmptyBlock";
+
 export default class Author extends React.Component {
   render() {
     const {author} = this.props;
 
     if (!author) {
-      return <div className='row'>Unknown</div>;
+      return <EmptyBlock />;
     }
 
     return (
