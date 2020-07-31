@@ -6,10 +6,10 @@ import Content from "./components/layouts/Content";
 import Footer from "./components/layouts/Footer";
 
 const user = {
-  email: 'ivan.ivanov@gmail.com',
-  firstName: 'Ivan',
-  lastName: 'Ivanov',
-  avatarUrl: 'https://www.viawater.nl/files/default-user.png'
+  email: "ivan.ivanov@gmail.com",
+  firstName: "Ivan",
+  lastName: "Ivanov",
+  avatarUrl: "https://www.viawater.nl/files/default-user.png"
 }
 
 export default class App extends React.Component {
