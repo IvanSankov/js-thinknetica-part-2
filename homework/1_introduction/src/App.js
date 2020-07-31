@@ -1,15 +1,15 @@
 import React from 'react';
 
-import Header from "./components/Header";
-import Book from "./components/Book";
-import Footer from "./components/Footer";
+import Header from "./components/layouts/Header";
+import Content from "./components/layouts/Content";
+import Footer from "./components/layouts/Footer";
 
 export default class App extends React.Component {
   render() {
     return (
       <>
         <Header />
-        <Book book={this.props.book}/>
+        <Content book={this.props.book}/>
         <Footer />
       </>
     )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import ContactFormInput from "./ContactFormInput";
 
@@ -22,16 +22,16 @@ export default class ContactForm extends React.Component {
 
   render() {
     return (
-      <div className='row'>
+      <div className="row">
         <div className="col-sm-12">
           <form onSubmit={this.submit}>
-            <ContactFormInput name='fullName' placeholder="Ivan Ivanov" label="Full name" />
-            <ContactFormInput name='email' type="email" placeholder="name@example.com" label="Email address" />
+            <ContactFormInput name="fullName" placeholder="Ivan Ivanov" label="Full name" />
+            <ContactFormInput name="email" type="email" placeholder="name@example.com" label="Email address" />
             <div className="form-group">
               <label>Your question</label>
-              <textarea name='question' className="form-control" rows="3" />
+              <textarea name="question" className="form-control" rows="3" />
             </div>
-            <button type='submit' className='btn btn-success'>Send</button>
+            <button type="submit" className="btn btn-success">Send</button>
           </form>
         </div>
       </div>

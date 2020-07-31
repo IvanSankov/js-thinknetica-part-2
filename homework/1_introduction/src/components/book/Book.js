@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import AuthorList from './AuthorList'
+import AuthorList from "./AuthorList"
 import BookInfo from "./BookInfo";
-import ContactForm from "./ContactForm";
-import EmptyBlock from "./EmptyBlock";
+import ContactForm from "../forms/contact/ContactForm";
+import EmptyBlock from "../helpers/EmptyBlock";
 
 const MIN_SUBSCRIBERS_FOR_POPULARITY = 100;
 
@@ -15,19 +15,19 @@ export default class Book extends React.Component {
     }
 
     const popular = book.subscribers > MIN_SUBSCRIBERS_FOR_POPULARITY
-      && <span className='badge badge-primary'>Popular</span>;
+      && <span className="badge badge-primary">Popular</span>;
 
     return (
       <>
-        <div className='row bg-light'>
-          <div className='col-sm-7'>
+        <div className="row bg-light">
+          <div className="col-sm-7">
             <h3>Book {popular}</h3>
             <BookInfo book={book}/>
           </div>
-          <div className='col-sm-4'>
+          <div className="col-sm-4">
             <AuthorList authors={book.authors}/>
           </div>
-          <div className='col-sm-12'>
+          <div className="col-sm-12">
             <ContactForm/>
           </div>
         </div>
