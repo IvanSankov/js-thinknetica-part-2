@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import Author from "./Author";
 
@@ -32,6 +32,6 @@ export default class AuthorList extends React.Component {
 
 const styles = {
   showMore: {
-    cursor: 'pointer',
+    cursor: "pointer",
   }
 };

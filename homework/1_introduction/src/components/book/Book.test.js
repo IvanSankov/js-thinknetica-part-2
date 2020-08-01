@@ -1,9 +1,9 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 
-import Book from './Book';
-import withMarkup from '../test/helpers/withMarkup';
+import Book from "./Book";
+import withMarkup from "../../test/helpers/withMarkup";
 
 const book = {
   "title": "BookTitle",
@@ -28,11 +28,11 @@ const book = {
   "expectedSum": 50
 };
 
-const modalRoot = document.createElement('div');
-modalRoot.setAttribute('id', 'modal-root');
+const modalRoot = document.createElement("div");
+modalRoot.setAttribute("id", "modal-root");
 document.body.appendChild(modalRoot);
 
-test('render book', () => {
+test("render book", () => {
   const { getByText } = render(<Book book={book} />);
   const getByTextWithMarkup = withMarkup(getByText);
 
@@ -47,52 +47,52 @@ test('render book', () => {
   expect(getByTextWithMarkup(`Expected sum: ${book.expectedSum}$`)).toBeInTheDocument();
 });
 
-test('render label', () => {
+test("render label", () => {
   const book = {
     "subscribers": 1000,
     "authors": []
   }
   const { getByText } = render(<Book book={book} />);
-  expect(getByText('Popular')).toBeInTheDocument();
+  expect(getByText("Popular")).toBeInTheDocument();
 });
 
-test('Do not render label', () => {
+test("Do not render label", () => {
   const book = {
     "subscribers": 100,
     "authors": []
   }
   const { queryByText } = render(<Book book={book} />);
-  expect(queryByText('Popular')).toBeNull();
+  expect(queryByText("Popular")).toBeNull();
 });
 
 /**
  * У этого теста, какое-то странное поведение, по идеи он должен сломаться на строке 82, т.к. мы закрываем попап, а он
  * не ломается.
  */
-test('display modal', () => {
+test("display modal", () => {
   const { getByText, queryByText } = render(<Book book={book} />);
-  expect(getByText('Subscription condition')).toBeInTheDocument();
+  expect(getByText("Subscription condition")).toBeInTheDocument();
 
-  fireEvent.click(getByText('Subscription condition'));
+  fireEvent.click(getByText("Subscription condition"));
 
-  expect(getByText('Modal body text goes here.')).toBeInTheDocument();
-  expect(getByText('Modal body text goes here.')).toBeVisible();
+  expect(getByText("Modal body text goes here.")).toBeInTheDocument();
+  expect(getByText("Modal body text goes here.")).toBeVisible();
 
-  fireEvent.click(getByText('I agree'));
+  fireEvent.click(getByText("I agree"));
 
-  expect(queryByText('Modal body text goes here.')).toBeVisible();
+  expect(queryByText("Modal body text goes here.")).toBeVisible();
 
-  fireEvent.click(getByText('Subscription condition'));
+  fireEvent.click(getByText("Subscription condition"));
 
-  expect(getByText('Modal body text goes here.')).toBeInTheDocument();
+  expect(getByText("Modal body text goes here.")).toBeInTheDocument();
 
-  fireEvent.click(getByText('Close'));
+  fireEvent.click(getByText("Close"));
 
-  expect(queryByText('Modal body text goes here.')).toBeInTheDocument();
+  expect(queryByText("Modal body text goes here.")).toBeInTheDocument();
 });
 
-test('empty author', () => {
+test("empty author", () => {
   const { getByText } = render(<Book/>);
 
-  expect(getByText('Unknown')).toBeInTheDocument();
+  expect(getByText("Unknown")).toBeInTheDocument();
 });

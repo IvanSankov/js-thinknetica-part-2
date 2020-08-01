@@ -1,16 +1,26 @@
 import React from 'react';
 
-import Header from "./components/Header";
-import Book from "./components/Book";
-import Footer from "./components/Footer";
+import { UserContext } from "./components/contexts/User";
+import Header from "./components/layouts/Header";
+import Content from "./components/layouts/Content";
+import Footer from "./components/layouts/Footer";
+
+const user = {
+  email: "ivan.ivanov@gmail.com",
+  firstName: "Ivan",
+  lastName: "Ivanov",
+  avatarUrl: "https://www.viawater.nl/files/default-user.png"
+}
 
 export default class App extends React.Component {
   render() {
     return (
       <>
-        <Header />
-        <Book book={this.props.book}/>
-        <Footer />
+        <UserContext.Provider value={user}>
+          <Header />
+          <Content book={this.props.book}/>
+          <Footer />
+        </UserContext.Provider>
       </>
     )
   }

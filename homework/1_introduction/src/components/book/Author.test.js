@@ -1,8 +1,8 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import React from "react";
+import { render } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 
-import Author from './Author';
+import Author from "./Author";
 
 const author = {
   "id": 1,
@@ -12,12 +12,12 @@ const author = {
   "bio": "AuthorBio"
 };
 
-test('render author', () => {
+test("render author", () => {
   const { getByText, getByAltText } = render(<Author author={author}/>);
 
   /* тестируем аватарку */
   expect(getByAltText(author.name)).toBeInTheDocument();
-  expect(getByAltText(author.name)).toHaveAttribute('src', author.avatar);
+  expect(getByAltText(author.name)).toHaveAttribute("src", author.avatar);
 
   /* тестируем отображение имени */
   expect(getByText(/AuthorName/)).toBeInTheDocument();
@@ -29,8 +29,8 @@ test('render author', () => {
   expect(getByText(/AuthorBio/)).toBeInTheDocument();
 });
 
-test('empty author', () => {
+test("empty author", () => {
   const { getByText } = render(<Author/>);
 
-  expect(getByText('Unknown')).toBeInTheDocument();
+  expect(getByText("Unknown")).toBeInTheDocument();
 });

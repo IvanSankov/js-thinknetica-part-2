@@ -1,8 +1,8 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 
-import AuthorList from './AuthorList';
+import AuthorList from "./AuthorList";
 
 const authors = [
   {
@@ -36,25 +36,25 @@ const authors = [
 ];
 
 
-test('render author list equal 1', () => {
+test("render author list equal 1", () => {
   const { getByText, queryByText } = render(<AuthorList authors={authors.slice(0,1)}/>);
 
   expect(getByText(new RegExp(authors[0].name))).toBeInTheDocument();
 
-  expect(queryByText('Show more...')).toBeNull();
+  expect(queryByText("Show more...")).toBeNull();
 });
 
-test('render author list equal 3', () => {
+test("render author list equal 3", () => {
   const { getByText, queryByText } = render(<AuthorList authors={authors.slice(0,3)}/>);
 
   expect(getByText(new RegExp(authors[0].name))).toBeInTheDocument();
   expect(getByText(new RegExp(authors[1].name))).toBeInTheDocument();
   expect(getByText(new RegExp(authors[2].name))).toBeInTheDocument();
 
-  expect(queryByText('Show more...')).toBeNull();
+  expect(queryByText("Show more...")).toBeNull();
 });
 
-test('render author list greeter than 3', () => {
+test("render author list greeter than 3", () => {
   const { getByText, queryByText } = render(<AuthorList authors={authors}/>);
 
   expect(getByText(new RegExp(authors[0].name))).toBeInTheDocument();
@@ -63,10 +63,10 @@ test('render author list greeter than 3', () => {
 
   expect(queryByText(new RegExp(authors[3].name))).toBeNull();
 
-  expect(getByText('Show more...')).toBeInTheDocument();
+  expect(getByText("Show more...")).toBeInTheDocument();
 });
 
-test('click on "Show more..."', () => {
+test("click on \"Show more...\"", () => {
   const { getByText, queryByText } = render(<AuthorList authors={authors}/>);
 
   expect(getByText(new RegExp(authors[0].name))).toBeInTheDocument();
@@ -75,7 +75,7 @@ test('click on "Show more..."', () => {
 
   expect(queryByText(new RegExp(authors[3].name))).toBeNull();
 
-  expect(getByText('Show more...')).toBeInTheDocument();
+  expect(getByText("Show more...")).toBeInTheDocument();
 
   /*
   * Все работает, но не понятно почему...
@@ -84,14 +84,14 @@ test('click on "Show more..."', () => {
   *
   * await waitFor(() =>
   *   // getByRole throws an error if it cannot find an element
-  *   screen.getByRole('heading')
+  *   screen.getByRole("heading")
   * )
   *
   * Но что-то я не понимаю, waitFor у нас же нет, значит ее надо определять, но если ее надо определять, как ей внутри
   * понять, что компонент уже перемонтировался и можно начинать искать в нем нужные вещи?
   *
   * */
-  fireEvent.click(getByText('Show more...'));
+  fireEvent.click(getByText("Show more..."));
 
   expect(queryByText(new RegExp(authors[3].name))).toBeInTheDocument();
 });
