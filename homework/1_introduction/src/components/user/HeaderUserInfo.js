@@ -1,6 +1,6 @@
 import React from "react";
 
-import { UserContext } from "../contexts/User";
+import {UserContext} from "../contexts/User";
 
 const styles = {
   avatarUrl: {
@@ -8,14 +8,12 @@ const styles = {
   }
 };
 
-export default class HeaderUserInfo extends React.Component {
-  render() {
-    return (
-      <UserContext.Consumer>
-        {(user) => user.email ? <UserInfo user={user} /> : <GuestInfo />}
-      </UserContext.Consumer>
-    );
-  }
+export default function HeaderUserInfo(props) {
+  return (
+    <UserContext.Consumer>
+      {(user) => user.email ? <UserInfo user={user}/> : <GuestInfo/>}
+    </UserContext.Consumer>
+  );
 }
 
 function GuestInfo(props) {
