@@ -1,5 +1,6 @@
 import React from "react";
 import OrderBookFormInput from "./OrderBookFormInput";
+import converter from "./converter";
 
 export default class OrderBookForm extends React.Component {
   constructor(props) {
@@ -56,16 +57,4 @@ export default class OrderBookForm extends React.Component {
       </div>
     );
   }
-}
-
-function converter(value, from, to) {
-  if (from === to) {
-    return value;
-  }
-
-  if (from === 'up') {
-    return value * 0.9;
-  }
-
-  return value * 10 / 9;
 }
