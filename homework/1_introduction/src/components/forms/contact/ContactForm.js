@@ -22,8 +22,9 @@ export default class ContactForm extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row mt-5">
         <div className="col-sm-12">
+          <h3>Contact form</h3>
           <form onSubmit={this.submit}>
             <ContactFormInput name="fullName" placeholder="Ivan Ivanov" label="Full name" />
             <ContactFormInput name="email" type="email" placeholder="name@example.com" label="Email address" />

@@ -1,11 +1,9 @@
 import React from "react";
 
-import Book from "../book/Book";
+import Book from "../books/Book";
 
-export default class Content extends React.Component {
-  render() {
-    return (
-      <Book book={this.props.book}/>
-    );
-  }
+export default function Content(props) {
+  return (
+    <Book book={props.book}/>
+  );
 }
