@@ -1,8 +1,11 @@
 import React from "react";
 
-export default class Slider extends React.Component {
+class Slider extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      pointerShift: props.pointer.left
+    };
 
     this.isMouseDown = false;
 
@@ -13,6 +16,9 @@ export default class Slider extends React.Component {
   }
 
   handlerOnMouseDown(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     this.isMouseDown = true;
     this.reCalculatePointer(event);
   }
@@ -34,11 +40,23 @@ export default class Slider extends React.Component {
   }
 
   reCalculatePointer(event) {
-    return this.props.reCalculateShift(event, this.props.marker);
+    const diff = event.clientX - event.currentTarget.getBoundingClientRect().left;
+    const leftShift = parseInt(diff / event.currentTarget.offsetWidth * 100);
+
+    this.setState((state, props) => {
+      const pointerShift = props.minShift > leftShift ? props.minShift : leftShift;
+      if (props.onChange && typeof props.onChange === 'function') {
+        props.onChange(pointerShift)
+      }
+
+      return {
+        pointerShift: `${pointerShift}%`
+      }
+    });
   }
 
   render() {
-    const { backgroundStyle, text, pointer } = this.props.settings;
+    const {backgroundStyle, text, pointer} = this.props;
 
     return (
       <div className="row">
@@ -48,9 +66,30 @@ export default class Slider extends React.Component {
              onMouseDown={this.handlerOnMouseDown}
              onMouseUp={this.handlerOnMouseUp}
              style={backgroundStyle}>
-          {text} <span style={pointer} />
+          {text} <span style={Object.assign({left: this.state.pointerShift}, pointer)}/>
         </div>
       </div>
     );
   }
 }
+
+Slider.defaultProps = {
+  text: null,
+  minShift: 10,
+  backgroundStyle: {
+    background: "#FFFFFF",
+    height: "40px"
+  },
+  pointer: {
+    position: "absolute",
+    height: "50px",
+    width: "20px",
+    background: "black",
+    border: "1px solid black",
+    top: "-5px",
+    cursor: "pointer",
+    left: "10%"
+  }
+}
+
+export default Slider;
