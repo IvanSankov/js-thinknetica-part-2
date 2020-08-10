@@ -18,7 +18,7 @@ export default class App extends React.Component {
       <>
         <UserContext.Provider value={user}>
           <Header />
-          <Content book={this.props.book}/>
+          <Content bookId="reco6TVYCKDcDrSSM" />
           <Footer />
         </UserContext.Provider>
       </>
