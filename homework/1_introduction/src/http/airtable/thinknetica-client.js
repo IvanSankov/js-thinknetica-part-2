@@ -1,4 +1,5 @@
 import axios from "axios";
+import {zip, zipObject} from "lodash";
 
 const TOKEN = "key9qHgAnpNZcjAed";
 
@@ -51,72 +52,38 @@ function mapBookResponse2BookProps(data) {
     expectedSum: data.fields.expectedSum
   };
 
-  const fnBookAuthors = mapLinkedAuthorsResponse2AuthorListProps(
+  book.authors = constructAuthorList(
     data.fields,
+    'authors',
     'Name (from author)',
     'avatar (from author)',
     'email (from author)',
     'bio (from author)'
   );
 
-  book.authors = data.fields.authors.map(fnBookAuthors);
-
-  const similarBookTitle = data.fields['title (from similarBooks)'];
-  const similarBookCover = data.fields['cover (from similarBooks)'];
-  const similarBookAuthors = data.fields['authors (from similarBooks)'];
-  const fnSimilarBookAuthors = mapLinkedAuthorsResponse2AuthorListProps(
+  const similarBookAuthors = constructAuthorList(
     data.fields,
+    'authors (from similarBooks)',
     'Name (from author) (from similarBooks)',
     'avatar (from author) (from similarBooks)',
     'email (from author) (from similarBooks)',
-    'bio (from author) (from similarBooks)',
+    'bio (from author) (from similarBooks)'
   );
 
-  book.similarBooks = data.fields.similarBooks.map((id, index) => {
-    const authors = [];
-    authors.push(fnSimilarBookAuthors(similarBookAuthors[index], index));
+  book.similarBooks = zip(
+    data.fields.similarBooks,
+    data.fields['title (from similarBooks)'],
+    data.fields['cover (from similarBooks)']
+  ).map((similarBook, index) => {
+    similarBook.push(similarBookAuthors[index]);
 
-    return {
-      id,
-      title: similarBookTitle[index],
-      cover: similarBookCover[index],
-      authors
-    }
+    return zipObject(['id', 'title', 'cover', 'authors'], similarBook);
   });
 
   return book
 }
 
-/**
- * Функция, которая отображает данные из связанных данный в объект, который использует Author.js
- *
- *
- * @param {array} list
- * @param {string} keyName
- * @param {string} keyAvatar
- * @param {string} keyEmail
- * @param {string} keyBio
- * @return {function(*, *): {name: *, bio: *, id: *, avatar: *, email: *}}
- */
-function mapLinkedAuthorsResponse2AuthorListProps(
-  list,
-  keyName,
-  keyAvatar,
-  keyEmail,
-  keyBio
-) {
-  const authorName = list[keyName];
-  const authorAvatar = list[keyAvatar];
-  const authorEmail = list[keyEmail];
-  const authorBio = list[keyBio];
-
-  return (id, index) => {
-    return {
-      id,
-      name: authorName[index],
-      avatar: authorAvatar[index],
-      email: authorEmail[index],
-      bio: authorBio[index]
-    }
-  }
+function constructAuthorList(list, keyId, keyName, keyAvatar, keyEmail, keyBio) {
+  return  zip(list[keyId], list[keyName], list[keyAvatar], list[keyEmail], list[keyBio])
+    .map(authors => zipObject(['id','name','avatar','email','bio'], authors));
 }
