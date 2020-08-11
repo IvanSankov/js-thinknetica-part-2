@@ -12,17 +12,18 @@ export default class PriceCalculator extends React.Component {
 
     this.maxPrice = props.minPrice * 10 / 3;
 
-    this.handlerChangeInput = this.handlerChangeInput.bind(this);
+    this.handlerChangeUserPrice = this.handlerChangeUserPrice.bind(this);
+    this.handlerChangeAuthorPrice = this.handlerChangeAuthorPrice.bind(this);
+
     this.handlerChangeSlider = this.handlerChangeSlider.bind(this);
   }
 
-  handlerChangeInput(event) {
-    const { target } = event;
-    const marker = target.dataset.marker;
+  handlerChangeUserPrice(currentPrice) {
+    this._updatePrice(currentPrice, "up");
+  }
 
-    let currentPrice = parseFloat(target.value);
-
-    this._updatePrice(currentPrice, marker);
+  handlerChangeAuthorPrice(currentPrice) {
+    this._updatePrice(currentPrice, "ae");
   }
 
   handlerChangeSlider(newPrice, marker) {
@@ -36,12 +37,6 @@ export default class PriceCalculator extends React.Component {
       currentPrice = maxPrice;
     }
 
-    /* Все работает, одна если я захочу набрать, число, он сбрасывает до минимума, допустим, у меня минимальная
-      цена 100 и я хочу руками набрать 2000, то как только я кликну 2, у меня сразу будет проверка на минимальность и
-      автоматом проставится ноль. Что делать? как быть? засунуть this.setState в какой-нибудь setTimout и хранить
-      идентификатор этого таймаута и чистить его clearTimout(timerId) после того как трегерится handlerChangeInput?
-      больше вариантов у меня нет :-(
-    */
     this.setState((state, props) => {
       const userPrice = converter(currentPrice, marker, 'up');
       const minPrice = converter(props.minPrice, 'up', marker);
@@ -60,13 +55,11 @@ export default class PriceCalculator extends React.Component {
 
     return (
       <>
-        <OrderBookFormInput handler={this.handlerChangeInput}
-                            marker="up"
+        <OrderBookFormInput handler={this.handlerChangeUserPrice}
                             label="You price"
                             name="userPrice" value={userPrice}/>
 
-        <OrderBookFormInput handler={this.handlerChangeInput}
-                            marker="ae"
+        <OrderBookFormInput handler={this.handlerChangeAuthorPrice}
                             label="Author earns"
                             name="authorEarns"
                             value={authorEarns}/>
