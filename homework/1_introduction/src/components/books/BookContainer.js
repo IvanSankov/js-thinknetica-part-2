@@ -31,10 +31,6 @@ export default class BookContainer extends React.Component {
   render() {
     const { book } = this.state
 
-    return (
-      <>
-        {book ? <Book book={book} /> : <Loader />}
-      </>
-    );
+    return book ? <Book book={book} /> : <Loader />;
   }
 }
