@@ -5,6 +5,7 @@ import BookInfo from "./BookInfo";
 import ContactForm from "../forms/contact/ContactForm";
 import EmptyBlock from "../helpers/EmptyBlock";
 import SimilarBookList from "./SimilarBookList";
+import BookOrder from "../forms/order-book/BookOrder";
 
 const MIN_SUBSCRIBERS_FOR_POPULARITY = 100;
 
@@ -25,6 +26,9 @@ export default function Book(props) {
             <div className="col-sm-12">
               <h3>Book {popular}</h3>
               <BookInfo book={book}/>
+            </div>
+            <div className="mt-3 col-sm-12">
+              <BookOrder minPrice={book.minPrice} initialPrice={book.minPrice} />
             </div>
             <div className="mt-3 col-sm-12 border">
               <SimilarBookList book={book} />
