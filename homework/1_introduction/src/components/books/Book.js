@@ -5,10 +5,12 @@ import BookInfo from "./BookInfo";
 import ContactForm from "../forms/contact/ContactForm";
 import EmptyBlock from "../helpers/EmptyBlock";
 import SimilarBookList from "./SimilarBookList";
+import withBook from "../../hoc/withBook";
+import withLoader from "../../hoc/withLoader";
 
 const MIN_SUBSCRIBERS_FOR_POPULARITY = 100;
 
-export default function Book(props) {
+function Book(props) {
   const { book } = props;
   if (!book) {
     return <EmptyBlock/>;
@@ -42,3 +44,5 @@ export default function Book(props) {
     </>
   );
 }
+
+export default withBook(withLoader(Book));
