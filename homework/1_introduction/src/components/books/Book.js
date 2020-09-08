@@ -4,8 +4,6 @@ import AuthorList from "./AuthorList"
 import BookInfo from "./BookInfo";
 import ContactForm from "../forms/contact/ContactForm";
 import SimilarBookList from "./SimilarBookList";
-import withBook from "../../hoc/withBook";
-import withLoader from "../../hoc/withLoader";
 import Loader from "../helpers/Loader";
 import ThinkneticaClient from "../../http/airtable/thinknetica-client";
 

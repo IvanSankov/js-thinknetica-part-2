@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 
-import {UserContext} from "../contexts/User";
+import { UserContext } from "../contexts/User";
 
 const styles = {
   avatarUrl: {
@@ -9,11 +9,9 @@ const styles = {
 };
 
 export default function HeaderUserInfo(props) {
-  return (
-    <UserContext.Consumer>
-      {(user) => user.email ? <UserInfo user={user}/> : <GuestInfo/>}
-    </UserContext.Consumer>
-  );
+  const user = useContext(UserContext);
+
+  return user.email ? <UserInfo user={user}/> : <GuestInfo/>;
 }
 
 function GuestInfo(props) {
