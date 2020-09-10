@@ -1,17 +1,29 @@
-import React from "react";
+import React, {useState, useLayoutEffect} from "react";
 
 import AuthorList from "./AuthorList"
 import BookInfo from "./BookInfo";
 import ContactForm from "../forms/contact/ContactForm";
-import EmptyBlock from "../helpers/EmptyBlock";
 import SimilarBookList from "./SimilarBookList";
+import Loader from "../helpers/Loader";
+import ThinkneticaClient from "../../http/airtable/thinknetica-client";
 
 const MIN_SUBSCRIBERS_FOR_POPULARITY = 100;
 
-export default function Book(props) {
-  const { book } = props;
+function Book(props) {
+  const [book, setBook] = useState(null);
+
+  useLayoutEffect(() => {
+    const _client = new ThinkneticaClient();
+
+    _client
+      .getBookById(props.bookId)
+      .then(book => {
+        setBook(book);
+      });
+  });
+
   if (!book) {
-    return <EmptyBlock/>;
+    return <Loader/>;
   }
 
   const popular = book.subscribers > MIN_SUBSCRIBERS_FOR_POPULARITY
@@ -42,3 +54,5 @@ export default function Book(props) {
     </>
   );
 }
+
+export default Book;
