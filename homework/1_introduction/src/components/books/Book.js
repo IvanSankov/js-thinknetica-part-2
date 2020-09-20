@@ -20,7 +20,7 @@ function Book(props) {
       .then(book => {
         setBook(book);
       });
-  });
+  }, []);
 
   if (!book) {
     return <Loader/>;
