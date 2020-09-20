@@ -1,5 +1,7 @@
 import React from 'react';
 
+import "./styles.css";
+
 import { UserContext } from "./components/contexts/User";
 import Header from "./components/layouts/Header";
 import Content from "./components/layouts/Content";
