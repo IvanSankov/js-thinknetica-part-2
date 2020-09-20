@@ -16,16 +16,17 @@ export default class AuthorList extends React.Component {
 
   render() {
     const authors = this.props.authors;
-    const sliceLength = this.state.showAll ? authors.length : 3;
+    const slice = this.props.dimensions.width >= 960 ? 3 : 1;
+    const sliceLength = this.state.showAll ? authors.length : slice;
 
     return (
-      <>
+      <div className="row">
         {authors.slice(0, sliceLength).map(author => <Author key={author.id} author={author} />)}
         {
           authors.length > sliceLength &&
           <u style={styles.showMore}><span onClick={this.handleClick}>Show more...</span></u>
         }
-      </>
+      </div>
     );
   }
 }

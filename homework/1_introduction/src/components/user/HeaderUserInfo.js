@@ -17,7 +17,7 @@ export default function HeaderUserInfo(props) {
 function GuestInfo(props) {
   return (
     <div className="row">
-      <div className="col-sm-12 text-right">
+      <div className="col-lg-12 text-right">
         You are not logged in.
       </div>
     </div>
@@ -29,7 +29,7 @@ function UserInfo(props) {
 
   return (
     <div className="row">
-      <div className="col-sm-12 text-right">
+      <div className="col-lg-12 text-right">
         {user.firstName} {user.lastName} ({user.email})
         <img src={user.avatarUrl} className="rounded-circle float-right" style={styles.avatarUrl} alt="User avatar"/>
       </div>

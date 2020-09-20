@@ -10,16 +10,18 @@ export default function Author(props) {
   }
 
   return (
-    <div className="row mb-1 ml-1">
-      <div className="row">
-        <div className="col-sm-4">
-          <img src={author.avatar} className="img-fluid" alt={author.name}/>
-        </div>
-        <div className="col-sm-8">
-          <div className="row">
-            <div className="col-sm-12"><b>Name</b>: {author.name}</div>
-            <div className="col-sm-12"><b>Email</b>: {author.email}</div>
-            <div className="col-sm-12"><b>Bio</b>: {displayBio(author.bio)}</div>
+    <div className="col-lg-12">
+      <div className="row mb-1 ml-1">
+        <div className="row">
+          <div className="col-4 col-lg-4">
+            <img src={author.avatar} className="img-fluid" alt={author.name}/>
+          </div>
+          <div className="col-4 col-lg-8">
+            <div className="row">
+              <div className="col-lg-12"><b>Name</b>: {author.name}</div>
+              <div className="col-lg-12"><b>Email</b>: {author.email}</div>
+              <div className="col-lg-12"><b>Bio</b>: {displayBio(author.bio)}</div>
+            </div>
           </div>
         </div>
       </div>

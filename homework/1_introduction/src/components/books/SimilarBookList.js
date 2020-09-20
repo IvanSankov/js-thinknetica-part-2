@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SimilarBook from "./SimilarBook";
+import EmptyBlock from "../helpers/EmptyBlock";
 
 export default class SimilarBookList extends React.Component {
   constructor(props) {
@@ -21,25 +22,32 @@ export default class SimilarBookList extends React.Component {
 
   render() {
     const { similarBooks } = this.state;
-
-    if (similarBooks.length === 0) {
-      return null;
-    }
+    const { dimensions } = this.props;
 
     return (
       <div className="row">
-        <div className="col-sm-12">
+        <div className="col-lg-12">
           <h3>Similar books</h3>
-          <div className="row">
-            { similarBooks.slice(0,3).map(similarBook => (
-                <SimilarBook key={similarBook.id} book={similarBook} handlerRemoveBook={this.handlerRemoveBook}/>
-              )
-            ) }
-          </div>
+          {similarBooks.length === 0
+            ? <EmptyBlock />
+            : <DisplayBooks dimensions={dimensions} handlerRemoveBook={this.handlerRemoveBook} similarBooks={similarBooks} /> }
         </div>
       </div>
     );
   }
+}
+
+function DisplayBooks({ similarBooks, handlerRemoveBook, dimensions }) {
+  const slice = dimensions.width >= 960 ? 3 : 1;
+
+  return (
+    <div className="row">
+      {similarBooks.slice(0, slice).map(similarBook => (
+          <SimilarBook key={similarBook.id} book={similarBook} handlerRemoveBook={handlerRemoveBook}/>
+        )
+      ) }
+    </div>
+  )
 }
 
 function getSimilarBookList(bookId) {
