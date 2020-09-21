@@ -6,6 +6,7 @@ import ContactForm from "../forms/contact/ContactForm";
 import SimilarBookList from "./SimilarBookList";
 import Loader from "../helpers/Loader";
 import ThinkneticaClient from "../../http/airtable/thinknetica-client";
+import useWindowSize from '../../hooks/windowSize';
 
 const MIN_SUBSCRIBERS_FOR_POPULARITY = 100;
 
@@ -54,32 +55,6 @@ function Book(props) {
       </div>
     </>
   );
-}
-
-
-const useWindowSize = () => {
-  const [dimensions, setDimensions] = useState({
-    width: window.outerWidth,
-    height: window.outerHeight
-  });
-
-  useEffect(() => {
-    const handlerResize = () => {
-      setDimensions({
-        width: window.outerWidth,
-        height: window.outerHeight,
-      });
-    }
-
-    window.addEventListener('resize', handlerResize);
-
-    return () => {
-      window.removeEventListener('resize', handlerResize);
-    }
-  }, []);
-
-
-  return dimensions;
 }
 
 export default Book;
