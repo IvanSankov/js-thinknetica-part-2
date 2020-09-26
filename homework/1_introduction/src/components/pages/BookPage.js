@@ -3,10 +3,11 @@ import useWindowSize from "../../hooks/windowSize";
 import ThinkneticaClient from "../../http/airtable/thinknetica-client";
 import Book from "../books/Book";
 import Loader from "../helpers/Loader";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 export default function BookPage(props) {
-  const { id } = useParams();
+  const {id} = useParams();
   const [book, setBook] = useState(null);
   const dimensions = useWindowSize();
 
@@ -20,5 +21,13 @@ export default function BookPage(props) {
       });
   }, []);
 
-  return book ? <Book book={book} dimensions={dimensions} /> : <Loader />
+  return (
+    <>
+      <Helmet>
+        <title>{ book ? book.title : 'Loading...' }</title>
+      </Helmet>
+
+      {book ? <Book book={book} dimensions={dimensions}/> : <Loader/>}
+    </>
+  );
 }
