@@ -19,7 +19,7 @@ export default function BookPage(props) {
       .then(book => {
         setBook(book);
       });
-  }, []);
+  }, [id]);
 
   return (
     <>
