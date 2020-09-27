@@ -10,23 +10,7 @@ import useWindowSize from '../../hooks/windowSize';
 
 const MIN_SUBSCRIBERS_FOR_POPULARITY = 100;
 
-function Book(props) {
-  const [book, setBook] = useState(null);
-  const dimensions = useWindowSize();
-
-  useLayoutEffect(() => {
-    const _client = new ThinkneticaClient();
-
-    _client
-      .getBookById(props.bookId)
-      .then(book => {
-        setBook(book);
-      });
-  }, []);
-
-  if (!book) {
-    return <Loader/>;
-  }
+function Book({ book, dimensions }) {
 
   const popular = book.subscribers > MIN_SUBSCRIBERS_FOR_POPULARITY
     && <span className="badge badge-primary">Popular</span>;

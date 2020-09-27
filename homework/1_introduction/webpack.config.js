@@ -12,7 +12,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.html')
+      template: path.resolve(__dirname, 'src/index.html'),
+      base: "/"
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
@@ -37,6 +38,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
+    port: 9000,
+    historyApiFallback: true
   }
 };

@@ -25,6 +25,14 @@ export default class ThinkneticaClient {
       .then(mapBookResponse2BookProps);
   }
 
+  getListBooks() {
+    return this._client.get(`book`, {
+      cancelToken: this._source.token
+    })
+      .then(response => response.data.records)
+      .then(list => list.map(mapBookResponse2BookProps));
+  }
+
   abort() {
     this._source.cancel('Operation canceled by the user.');
   }
