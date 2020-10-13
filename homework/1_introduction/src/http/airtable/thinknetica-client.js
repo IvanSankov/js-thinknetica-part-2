@@ -33,6 +33,32 @@ export default class ThinkneticaClient {
       .then(list => list.map(mapBookResponse2BookProps));
   }
 
+  createBook(data) {
+    return this._client.post(
+      'book',
+      {
+        "records": [
+          {
+            "fields": data
+          }
+        ]
+      },
+      {
+        cancelToken: this._source.token
+      })
+      .then(response => response.data.records)
+      .then(data => data[0])
+      .then(mapBookResponse2BookProps);
+  }
+
+  getListAuthor() {
+    return this._client.get(`author`, {
+      cancelToken: this._source.token
+    })
+      .then(response => response.data.records)
+      .then(list => list.map(mapAuthorResponse2AuthorProps));
+  }
+
   abort() {
     this._source.cancel('Operation canceled by the user.');
   }
@@ -89,6 +115,16 @@ function mapBookResponse2BookProps(data) {
   });
 
   return book
+}
+
+function mapAuthorResponse2AuthorProps(data) {
+  return {
+    id: data.id,
+    email: data.fields.email,
+    bio: data.fields.bio,
+    avatar: data.fields.avatar,
+    name: data.fields.Name
+  };
 }
 
 function constructAuthorList(list, keyId, keyName, keyAvatar, keyEmail, keyBio) {
