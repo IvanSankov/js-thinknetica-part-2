@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import {useForm} from "react-hook-form";
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import ThinkneticaClient from "../../../http/airtable/thinknetica-client";
-import { useHistory } from "react-router-dom";
+import FilestackClient from "../../../http/filestack/filestack-client";
+import {useHistory} from "react-router-dom";
 import { bookPage } from "../../../helpers/url-hepler";
 
 const schema = yup.object().shape({
   title: yup.string().required(),
-  cover: yup.string().required(),
   authors: yup.string().required(),
   shortDescription: yup.string().max(250).required(),
   pages: yup.number().min(1).required(),
@@ -47,8 +47,8 @@ export default function CreateBookForm (props) {
   }, []);
 
 
-  const onSubmit = (data) => {
-    prepareFormData(data);
+  const onSubmit = async (data) => {
+    await prepareFormData(data);
 
     const response = client.createBook(data);
 
@@ -59,7 +59,10 @@ export default function CreateBookForm (props) {
     });
   }
 
-  const prepareFormData = (data) => {
+  const prepareFormData = async (data) => {
+    const file = await loadCover(data);
+
+    data.cover = file.url;
     data.pages = parseInt(data.pages);
     data.progress = parseFloat(data.progress);
     data.minPrice = parseFloat(data.minPrice);
@@ -73,6 +76,14 @@ export default function CreateBookForm (props) {
     ];
   }
 
+  const loadCover = async (data) => {
+    const client = new FilestackClient();
+    const formData = new FormData();
+    formData.append('fileUpload', data.cover[0]);
+
+    return client.uploadFile(formData);
+  }
+
   return (
     <div className="row">
       <div className="col-sm-8 offset-sm-2">
@@ -80,11 +91,11 @@ export default function CreateBookForm (props) {
 
           <Field errors={errors} label="Title" name="title" register={register} />
 
-          <Field errors={errors} label="Cover" name="cover" register={register} />
+          <Field label="Cover" name="cover" type="file" register={register} />
 
-          <Field errors={errors} label="Author" name="authors" register={register} type="select" dataOptions={authors} />
+          <Field errors={errors} label="Author" name="authors" register={register} view="select" dataOptions={authors} />
 
-          <Field errors={errors} label="Short description" name="shortDescription" rows="3" type="textarea" register={register} />
+          <Field errors={errors} label="Short description" name="shortDescription" rows="3" view="textarea" register={register} />
 
           <Field errors={errors} defaultValue={1} label="Pages" name="pages" register={register} />
 
@@ -105,10 +116,10 @@ export default function CreateBookForm (props) {
   );
 }
 
-function Field({ errors, register, label, name, type, ...anotherProps }) {
+function Field({ errors, register, label, name, type, view, ...anotherProps }) {
   const id = `create-book-form-${name}`;
-  const Component = type === undefined ? 'input' : type;
-  let field = <Component name={name} className="form-control" id={id} ref={register} { ...anotherProps } />;
+  const Component = view === undefined ? 'input' : view;
+  let field = <Component name={name} type={type} className="form-control" id={id} ref={register} { ...anotherProps } />;
 
   if (Component === 'select') {
     field =
