@@ -23,7 +23,7 @@ const schema = yup.object().shape({
 
 export default function CreateBookForm (props) {
   const client = new ThinkneticaClient();
-  const { errors, register, handleSubmit, isSubmitting } = useForm({
+  const { errors, register, handleSubmit, formState: { isSubmitting } } = useForm({
     resolver: yupResolver(schema)
   });
   const history = useHistory();
