@@ -52,7 +52,7 @@ export default function CreateBookForm (props) {
 
     const response = client.createBook(data);
 
-    response.then(book => {
+    return await response.then(book => {
       const bookUrl = bookPage(book.id);
 
       history.push(bookUrl);
