@@ -23,7 +23,7 @@ const schema = yup.object().shape({
 
 export default function CreateBookForm (props) {
   const client = new ThinkneticaClient();
-  const { errors, register, handleSubmit } = useForm({
+  const { errors, register, handleSubmit, isSubmitting } = useForm({
     resolver: yupResolver(schema)
   });
   const history = useHistory();
@@ -109,7 +109,11 @@ export default function CreateBookForm (props) {
 
           <Field errors={errors} defaultValue={1} label="Expected sum" name="expectedSum" register={register} />
 
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button disabled={isSubmitting}
+                  type="submit"
+                  className={`btn ${isSubmitting ? 'btn-success' : 'btn-primary'}`}>
+            {isSubmitting ? 'Processing...' : 'Submit'}
+          </button>
         </form>
       </div>
     </div>
