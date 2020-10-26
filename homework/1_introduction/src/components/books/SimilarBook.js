@@ -24,7 +24,7 @@ export default function SimilarBook(props) {
           <b>Title:</b> {book.title}
         </div>
         <div className="col-lg-12">
-          <b>Author:</b> {book.authors.map(author => author.name).join(', ')}
+          <b>Author:</b> { book.authors.name }
         </div>
       </div>
     </div>
