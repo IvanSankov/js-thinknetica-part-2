@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Scroll2Up from "../helpers/Scroll2Up";
 import {BrowserRouter as Router} from "react-router-dom";
+import WishlistProvider from "../providers/WishlistProvider";
 
 const user = {
   email: "ivan.ivanov@gmail.com",
@@ -16,10 +17,12 @@ export default function Layout(props) {
   return (
     <Router>
       <UserContext.Provider value={user}>
-        <Header />
-        { props.children }
-        <Scroll2Up/>
-        <Footer />
+        <WishlistProvider>
+          <Header />
+          { props.children }
+          <Scroll2Up/>
+          <Footer />
+        </WishlistProvider>
       </UserContext.Provider>
     </Router>
   )

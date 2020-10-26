@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 
-import { UserContext } from "../contexts/User";
+import { UserContext } from "../../contexts/User";
 
 const styles = {
   avatarUrl: {
@@ -8,13 +8,13 @@ const styles = {
   }
 };
 
-export default function HeaderUserInfo(props) {
+export default function UserInfo(props) {
   const user = useContext(UserContext);
 
-  return user.email ? <UserInfo user={user}/> : <GuestInfo/>;
+  return user.email ? <User user={user}/> : <Guest/>;
 }
 
-function GuestInfo(props) {
+function Guest(props) {
   return (
     <div className="row">
       <div className="col-lg-12 text-right">
@@ -24,7 +24,7 @@ function GuestInfo(props) {
   );
 }
 
-function UserInfo(props) {
+function User(props) {
   const user = props.user;
 
   return (
