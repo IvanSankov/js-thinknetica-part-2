@@ -1,6 +1,7 @@
 import React from "react";
 
 import SubscriptionConditionModal from "../modals/SubscriptionConditionModal";
+import WishlistBtn from "./WishlistBtn";
 
 export default function BookInfo(props) {
   const { book } = props;
@@ -14,6 +15,9 @@ export default function BookInfo(props) {
           </div>
           <div className="col-lg-12">
             <SubscriptionConditionModal/>
+          </div>
+          <div className="col-lg-12">
+            <WishlistBtn bookId={book.id} title={book.title} />
           </div>
         </div>
       </div>
